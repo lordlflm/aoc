@@ -26,6 +26,9 @@ class Ranges:
                     self.ranges[i] = (self.ranges[i][0], new_r[1])
                     changed = i
                     break
+                # la nouveau range est deja contenu dans un range
+                case (False, False, False, True):
+                    return
                 case _:
                     continue
         else:
@@ -38,7 +41,7 @@ class Ranges:
     def get_total_ranges_item(self):
         res = 0
         for r in self.ranges:
-            res += r[1] - r[0] + 1
+            res += (r[1] - r[0] + 1)
         return res
 
 with open(sys.argv[1], 'r') as f:
